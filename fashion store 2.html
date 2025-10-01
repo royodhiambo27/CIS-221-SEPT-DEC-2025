@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store | Complete E-commerce Inventory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind Configuration for defined colors
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4f46e5',     
+                        'primary-foreground': '#ffffff',
+                        'background': '#f9fafb',  
+                        'foreground': '#1f2937',  
+                        'muted': '#f3f4f6',       
+                        'muted-foreground': '#6b7280', 
+                        'accent': '#eef2ff',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* General styling for smooth transitions and secondary button look */
+        * { transition: all 0.3s ease; }
+        .btn-secondary { background-color: white; color: #4f46e5; border: 1px solid #4f46e5; }
+        .btn-secondary:hover { background-color: #eef2ff; }
+        
+        /* Image display settings for full view without cropping */
+        .image-container {
+            padding: 20px; 
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-full-view {
+            width: 100%;
+            height: auto;
+            max-height: 350px; 
+            object-fit: contain; 
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background text-foreground">
+
+    <div>
+        
+        <header class="bg-primary text-primary-foreground py-6 px-4 md:px-8">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-2xl md:text-3xl font-bold">Fashion Store</h1>
+                <nav class="hidden md:flex space-x-2">
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary-foreground text-primary shadow-lg scale-105">Shop All</button>
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary/80 text-primary-foreground hover:bg-primary-foreground hover:text-primary transform hover:scale-105">New Arrivals</button>
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary/80 text-primary-foreground hover:bg-primary-foreground hover:text-primary transform hover:scale-105">Sale Offers</button>
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary/80 text-primary-foreground hover:bg-primary-foreground hover:text-primary transform hover:scale-105">Why Us?</button>
+                </nav>
+                <button class="md:hidden px-4 py-2 text-sm rounded-md btn-secondary">Menu</button>
+            </div>
+        </header>
+
+        <section class="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16 px-4">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Discover Your Style</h2>
+                <p class="text-xl md:text-2xl mb-8">Premium fashion for every occasion</p>
+                <button class="px-6 py-3 text-lg rounded-md btn-secondary font-semibold">Shop Now</button>
+            </div>
+        </section>
+
+        <section id="inventory-report" class="py-12 px-4 bg-white">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8 text-primary">Store Performance Dashboard</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    
+                    <div class="p-4 bg-muted rounded-lg shadow-md">
+                        <p class="text-4xl font-bold text-primary" id="total-revenue">0.00</p>
+                        <p class="text-lg text-foreground mt-2">Total Revenue (Ksh)</p>
+                    </div>
+                    
+                    <div class="p-4 bg-muted rounded-lg shadow-md">
+                        <p class="text-4xl font-bold text-foreground" id="total-items-sold">0</p>
+                        <p class="text-lg text-foreground mt-2">Total Pieces Sold</p>
+                    </div>
+
+                    <div class="p-4 bg-muted rounded-lg shadow-md">
+                        <p class="text-4xl font-bold text-foreground" id="total-stock">0</p>
+                        <p class="text-lg text-foreground mt-2">Current Total Stock</p>
+                    </div>
+
+                    <div class="p-4 bg-muted rounded-lg shadow-md">
+                        <p class="text-4xl font-bold text-foreground" id="total-bought">0</p>
+                        <p class="text-lg text-foreground mt-2">Total Items Bought</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Featured Collection</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                        <div class="image-container overflow-hidden">
+                            <img src="https://i.pinimg.com/originals/73/6c/d5/736cd5394c992967d4ceb8999f72ca0a.jpg" alt="Elegant summer dress" class="image-full-view" />
+                        </div>
+                        <div class="p-4"><h3 class="text-xl font-semibold">Floral Summer Dress</h3></div>
+                        <div class="p-4 pt-0">
+                            <p class="text-muted-foreground text-sm">Lightweight fabric and beautiful floral print.</p>
+                            <p class="text-2xl font-bold text-primary mt-2">Ksh8999.99</p>
+                        </div>
+                        <div class="p-4 border-t">
+                            <button onclick="buyItem(1)" class="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                        <div class="image-container overflow-hidden">
+                            <img src="https://img0.etsystatic.com/013/1/6726715/il_fullxfull.433925608_37ws.jpg" alt="Classic blazer" class="image-full-view"/>
+                        </div>
+                        <div class="p-4"><h3 class="text-xl font-semibold">Classic Navy Blazer</h3></div>
+                        <div class="p-4 pt-0">
+                            <p class="text-muted-foreground text-sm">Premium wool blend blazer for business and formal occasions.</p>
+                            <p class="text-2xl font-bold text-primary mt-2">Ksh14959.99</p>
+                        </div>
+                        <div class="p-4 border-t">
+                            <button onclick="buyItem(2)" class="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                        <div class="image-container overflow-hidden">
+                            <img src="https://tse3.mm.bing.net/th/id/OIP.F1wqpCjpH0sEaijkEsOzAgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Designer handbag" class="image-full-view"/>
+                        </div>
+                        <div class="p-4"><h3 class="text-xl font-semibold">Designer Leather Handbag</h3></div>
+                        <div class="p-4 pt-0">
+                            <p class="text-muted-foreground text-sm">Luxurious genuine leather with ample space and elegant design.</p>
+                            <p class="text-2xl font-bold text-primary mt-2">Ksh27899.99</p>
+                        </div>
+                        <div class="p-4 border-t">
+                            <button onclick="buyItem(3)" class="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-muted py-16 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">Why Choose Fashion Store?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-primary-foreground">✓</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Quality Assurance</h3>
+                        <p class="text-muted-foreground">All our products undergo strict quality checks to ensure you receive only the best.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-primary-foreground">🚚</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Free Shipping</h3>
+                        <p class="text-muted-foreground">Enjoy free shipping on all orders over $50, delivered right to your doorstep.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-primary-foreground">↩️</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Easy Returns</h3>
+                        <p class="text-muted-foreground">Not satisfied? Return within 30 days for a full refund, no questions asked.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Upcoming Sale Events</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-lg text-sm md:text-base">
+                        <thead>
+                            <tr class="bg-primary text-primary-foreground">
+                                <th class="p-4 text-left font-bold">Sale Event</th>
+                                <th class="p-4 text-left font-bold">Date</th>
+                                <th class="p-4 text-left font-bold">Discount</th>
+                                <th class="p-4 text-left font-bold">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="even:bg-muted/30 hover:bg-accent/20 transition-colors">
+                                <td class="p-4 font-semibold">Summer Clearance</td>
+                                <td class="p-4">September 15-31, 2025</td>
+                                <td class="p-4 text-primary font-bold">Up to 50% OFF</td>
+                                <td class="p-4">Massive discounts on summer collections to make room for fall arrivals.</td>
+                            </tr>
+                            <tr class="even:bg-muted/30 hover:bg-accent/20 transition-colors">
+                                <td class="p-4 font-semibold">Back to School</td>
+                                <td class="p-4">October 1-15, 2025</td>
+                                <td class="p-4 text-primary font-bold">30% OFF</td>
+                                <td class="p-4">Special discounts on casual wear and accessories for students.</td>
+                            </tr>
+                            <tr class="even:bg-muted/30 hover:bg-accent/20 transition-colors">
+                                <td class="p-4 font-semibold">Fall Collection Launch</td>
+                                <td class="p-4">December 1, 2025</td>
+                                <td class="p-4 text-primary font-bold">20% OFF Early Access</td>
+                                <td class="p-4">Be the first to shop our new fall collection with exclusive early access discount.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-primary text-primary-foreground py-8 px-4">
+            <div class="container mx-auto text-center">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-4">Fashion Store</h3>
+                    <p class="text-primary-foreground/80">Your destination for premium fashion</p>
+                </div>
+                <div class="border-t border-primary-foreground/20 pt-6">
+                    <p class="text-sm text-primary-foreground/60">
+                        &copy; 2025 Fashion Store. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+
+    <script>
+        // --- 1. Base Inventory Data ---
+        // Defines the maximum stock bought for each item.
+        const baseInventory = [
+            { id: 1, name: "Floral Summer Dress", price: 8999.99, initialStock: 50 },
+            { id: 2, name: "Classic Navy Blazer", price: 14959.99, initialStock: 30 },
+            { id: 3, name: "Designer Leather Handbag", price: 27899.99, initialStock: 25 }
+        ];
+        
+        // --- 2. Initial State Calculation (Sets sales to 10) ---
+        // This function runs ONLY when localStorage is empty (first load or after a reset).
+        function calculateInitialState() {
+            const presetSales = 10;
+            let calculatedInventory = [];
+            let calculatedRevenue = 0;
+
+            baseInventory.forEach(item => {
+                // Ensure stock doesn't go negative if initialStock is less than presetSales (e.g., if we tried to set 10 sales on an item with 5 stock)
+                const unitsSold = Math.min(presetSales, item.initialStock); 
+
+                calculatedInventory.push({
+                    ...item,
+                    currentStock: item.initialStock - unitsSold,
+                    unitsSold: unitsSold
+                });
+                calculatedRevenue += item.price * unitsSold;
+            });
+            return { inventory: calculatedInventory, revenue: calculatedRevenue };
+        }
+        
+        // --- 3. Load Data ---
+        let inventory, totalRevenue;
+
+        if (localStorage.getItem('fashionInventory')) {
+            // Load existing sales data if available
+            inventory = JSON.parse(localStorage.getItem('fashionInventory'));
+            totalRevenue = parseFloat(localStorage.getItem('totalRevenue'));
+        } else {
+            // Calculate and set the initial state with 10 sales
+            const initialState = calculateInitialState();
+            inventory = initialState.inventory;
+            totalRevenue = initialState.revenue;
+            
+            // Save this new starting point immediately
+            localStorage.setItem('fashionInventory', JSON.stringify(inventory));
+            localStorage.setItem('totalRevenue', totalRevenue);
+        }
+        
+        // Function to calculate totals and update the dashboard in the DOM
+        function updateReport() {
+            let totalItemsSold = 0;
+            let totalStock = 0;
+            let totalBought = 0;
+
+            inventory.forEach(item => {
+                totalItemsSold += item.unitsSold;
+                totalStock += item.currentStock;
+                totalBought += item.initialStock;
+            });
+
+            // Update the display for the four required metrics
+            document.getElementById('total-revenue').textContent = 'Ksh' + totalRevenue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('total-items-sold').textContent = totalItemsSold;
+            document.getElementById('total-stock').textContent = totalStock;
+            document.getElementById('total-bought').textContent = totalBought;
+
+            // Save current state back to localStorage
+            localStorage.setItem('fashionInventory', JSON.stringify(inventory));
+            localStorage.setItem('totalRevenue', totalRevenue);
+        }
+
+        // The core function called when "Add to Cart" is clicked
+        function buyItem(itemId) {
+            const item = inventory.find(i => i.id === itemId);
+
+            if (item && item.currentStock > 0) {
+                // Perform the "database transaction"
+                item.currentStock--;
+                item.unitsSold++;
+                totalRevenue += item.price; // Update money made on sales
+                
+                alert(`🛒 Purchased 1x ${item.name}! Stock remaining: ${item.currentStock}`);
+            } else if (item) {
+                alert(`Sorry, ${item.name} is out of stock! 😔`);
+            } else {
+                alert('Item not found.');
+            }
+            updateReport(); // Refresh the dashboard with new data
+        }
+
+        // --- Initialization and Reset Button Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display initial/persisted data
+            updateReport();
+
+            // Create and append the Reset button
+            const inventoryReportDiv = document.getElementById('inventory-report').querySelector('.container');
+            const clearButton = document.createElement('button');
+            clearButton.textContent = "Reset Inventory & Sales Data";
+            clearButton.className = "px-4 py-2 mt-8 text-sm rounded-md bg-red-600 text-white hover:bg-red-700 mx-auto block font-semibold transition-colors";
+            
+            clearButton.onclick = () => {
+                // Clear localStorage and reload the page to trigger the new 'initial state' calculation
+                localStorage.clear();
+                // We use location.reload() to make sure the state is fully reset and recalculated
+                location.reload(); 
+            };
+            inventoryReportDiv.appendChild(clearButton);
+        });
+        
+        // Expose the function globally so the HTML buttons can call it
+        window.buyItem = buyItem;
+    </script>
+
+</body>
+</html>
