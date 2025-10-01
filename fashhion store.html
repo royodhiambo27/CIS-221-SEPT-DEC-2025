@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store | Modern E-commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind Configuration (optional, but good for defining the primary color)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4f46e5',     /* A standard indigo/blue for 'primary' */
+                        'primary-foreground': '#ffffff',
+                        'background': '#f9fafb',  /* Very light grey for 'background' */
+                        'foreground': '#1f2937',  /* Dark grey for 'foreground' text */
+                        'muted': '#f3f4f6',       /* Lighter grey for 'muted' backgrounds */
+                        'muted-foreground': '#6b7280', /* Medium grey for muted text */
+                        'accent': '#eef2ff',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Optional: Add a smooth transition for all elements */
+        * {
+            transition: all 0.3s ease;
+        }
+        /* Style for the button variant that looks like 'secondary' */
+        .btn-secondary {
+            background-color: white;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+        }
+        .btn-secondary:hover {
+            background-color: #eef2ff;
+        }
+        /* Custom class to ensure the image container allows the image to scale naturally */
+        .image-container {
+            /* We remove h-64 to let the image define the height */
+            /* Add some padding to make the image stand out against the white card background */
+            padding: 20px; 
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Ensure the image scales down, but is never cropped */
+        .image-full-view {
+            width: 100%;
+            height: auto;
+            max-height: 350px; /* Set a max height so they don't get huge */
+            object-fit: contain; /* This is the key change: scales to fit without cropping */
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background text-foreground">
+
+    <div>
+        
+        <header class="bg-primary text-primary-foreground py-6 px-4 md:px-8">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-2xl md:text-3xl font-bold">Fashion Store</h1>
+                
+                <nav class="hidden md:flex space-x-2">
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary-foreground text-primary shadow-lg scale-105">All Products</button>
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary/80 text-primary-foreground hover:bg-primary-foreground hover:text-primary transform hover:scale-105">Women's Fashion</button>
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary/80 text-primary-foreground hover:bg-primary-foreground hover:text-primary transform hover:scale-105">Men's Fashion</button>
+                    <button class="px-4 py-2 rounded-full transition-all duration-300 font-medium bg-primary/80 text-primary-foreground hover:bg-primary-foreground hover:text-primary transform hover:scale-105">Accessories</button>
+                </nav>
+                
+                <button class="md:hidden px-4 py-2 text-sm rounded-md btn-secondary">
+                    Menu
+                </button>
+            </div>
+        </header>
+
+        <section class="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16 px-4">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Discover Your Style
+                </h2>
+                <p class="text-xl md:text-2xl mb-8">
+                    Premium fashion for every occasion
+                </p>
+                <button class="px-6 py-3 text-lg rounded-md btn-secondary font-semibold">
+                    Shop Now
+                </button>
+            </div>
+        </section>
+
+        <section class="py-12 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Featured Collection</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                        <div class="image-container overflow-hidden">
+                            <img 
+                                src="https://68cabcf0.delivery.rocketcdn.me/wp-content/uploads/2024/04/floral-summer-dress.png"
+                                alt="Elegant summer dress with floral pattern and flowing silhouette" 
+                                class="image-full-view" 
+                            />
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold">Floral Summer Dress</h3>
+                        </div>
+                        <div class="p-4 pt-0">
+                            <p class="text-muted-foreground text-sm">Perfect for summer occasions with lightweight fabric and beautiful floral print.</p>
+                            <p class="text-2xl font-bold text-primary mt-2">Ksh8999.99</p>
+                        </div>
+                        <div class="p-4 border-t">
+                            <button class="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                        <div class="image-container overflow-hidden">
+                            <img 
+                                src="https://img0.etsystatic.com/013/1/6726715/il_fullxfull.433925608_37ws.jpg" 
+                                alt="Classic men's tailored blazer in navy blue with gold buttons" 
+                                class="image-full-view"
+                            />
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold">Classic Navy Blazer</h3>
+                        </div>
+                        <div class="p-4 pt-0">
+                            <p class="text-muted-foreground text-sm">Premium wool blend blazer perfect for business and formal occasions.</p>
+                            <p class="text-2xl font-bold text-primary mt-2">Ksh14959.99</p>
+                        </div>
+                        <div class="p-4 border-t">
+                            <button class="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                        <div class="image-container overflow-hidden">
+                            <img 
+                                src="https://tse3.mm.bing.net/th/id/OIP.F1wqpCjpH0sEaijkEsOzAgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" 
+                                alt="Designer leather handbag with gold hardware and multiple compartments" 
+                                class="image-full-view"
+                            />
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold">Designer Leather Handbag</h3>
+                        </div>
+                        <div class="p-4 pt-0">
+                            <p class="text-muted-foreground text-sm">Luxurious genuine leather handbag with ample space and elegant design.</p>
+                            <p class="text-2xl font-bold text-primary mt-2">Ksh27899.99</p>
+                        </div>
+                        <div class="p-4 border-t">
+                            <button class="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-muted py-16 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">Why Choose Fashion Store?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-primary-foreground">✓</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Quality Assurance</h3>
+                        <p class="text-muted-foreground">All our products undergo strict quality checks to ensure you receive only the best.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-primary-foreground">🚚</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Free Shipping</h3>
+                        <p class="text-muted-foreground">Enjoy free shipping on all orders over $50, delivered right to your doorstep.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-primary-foreground">↩️</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Easy Returns</h3>
+                        <p class="text-muted-foreground">Not satisfied? Return within 30 days for a full refund, no questions asked.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Upcoming Sale Events</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse rounded-lg overflow-hidden shadow-lg text-sm md:text-base">
+                        <thead>
+                            <tr class="bg-primary text-primary-foreground">
+                                <th class="p-4 text-left font-bold">Sale Event</th>
+                                <th class="p-4 text-left font-bold">Date</th>
+                                <th class="p-4 text-left font-bold">Discount</th>
+                                <th class="p-4 text-left font-bold">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="even:bg-muted/30 hover:bg-accent/20 transition-colors">
+                                <td class="p-4 font-semibold">Summer Clearance</td>
+                                <td class="p-4">September 15-31, 2025</td>
+                                <td class="p-4 text-primary font-bold">Up to 50% OFF</td>
+                                <td class="p-4">Massive discounts on summer collections to make room for fall arrivals.</td>
+                            </tr>
+                            <tr class="even:bg-muted/30 hover:bg-accent/20 transition-colors">
+                                <td class="p-4 font-semibold">Back to School</td>
+                                <td class="p-4">October 1-15, 2025</td>
+                                <td class="p-4 text-primary font-bold">30% OFF</td>
+                                <td class="p-4">Special discounts on casual wear and accessories for students.</td>
+                            </tr>
+                            <tr class="even:bg-muted/30 hover:bg-accent/20 transition-colors">
+                                <td class="p-4 font-semibold">Fall Collection Launch</td>
+                                <td class="p-4">December 1, 2025</td>
+                                <td class="p-4 text-primary font-bold">20% OFF Early Access</td>
+                                <td class="p-4">Be the first to shop our new fall collection with exclusive early access discount.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-primary text-primary-foreground py-8 px-4">
+            <div class="container mx-auto text-center">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-4">Fashion Store</h3>
+                    <p class="text-primary-foreground/80">Your destination for premium fashion</p>
+                </div>
+                <div class="border-t border-primary-foreground/20 pt-6">
+                    <p class="text-sm text-primary-foreground/60">
+                        © 2025 Fashion Store. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+</body>
+</html>
